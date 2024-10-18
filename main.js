@@ -60,19 +60,4 @@ async function loadModel() {
 //function
 loadModel();
 
-//click event handler
-viewer.screenSpaceEventHandler.setInputAction(function onLeftClick(movement) {
-  const pickedObject = viewer.scene.pick(movement.position);
-  if (Cesium.defined(pickedObject) && Cesium.defined(pickedObject.id)) {
-      const entity = pickedObject.id;
-      const properties = entity.properties;
-      let attribute = 'Building Attributes:\n';
-      if (properties) {
-          properties.propertyNames.forEach(name => {
-              attribute += `${name}: ${properties[name].getValue()}\n`;
-          });
-      }
-      alert(attribute);
-  }
-}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
