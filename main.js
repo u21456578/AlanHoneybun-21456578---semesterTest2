@@ -29,6 +29,11 @@ async function loadModel() {
       viewer.dataSources.add(dataSource);
 
       dataSource.entities.values.forEach(entity => {
+        if (entity.polygon) {
+              const height = entity.properties.height?.getValue() || 0;
+              const buildingId = entity.properties.building_id?.getValue() || null;
+              const additionalHeight = (buildingId === 42) ? 50 : 2.5;
+              const engheight = (buildingId === 9) ? 30 : 2.5;
 
               Object.assign(entity.polygon, {
                   extrudedHeight: height + additionalHeight + engheight,
